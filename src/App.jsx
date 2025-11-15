@@ -115,6 +115,9 @@ const VerticalAdCarousel = () => {
   )
 }
 
+// Small base64 SVG noise tile to avoid JSX parser issues with inline XML
+const NOISE_BG = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMCcgaGVpZ2h0PScyMCcgdmlld0JveD0nMCAwIDIwIDIwJz48cmVjdCB3aWR0aD0nMScgaGVpZ2h0PScxJyBmaWxsPScjZmZmZmZmJyBmaWxsLW9wYWNpdHk9JzAuMDInLz48L3N2Zz4="
+
 export default function App() {
   useRevealOnScroll()
 
@@ -123,7 +126,7 @@ export default function App() {
       {/* background layers */}
       <div className="fixed inset-0 -z-0 pointer-events-none">
         {/* subtle noise */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;utf8,<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\"><rect width=\"1\" height=\"1\" fill=\"%23ffffff\" fill-opacity=\"0.02\"/></svg>')] opacity-40" />
+        <div className="absolute inset-0 opacity-40" style={{ backgroundImage: `url(${NOISE_BG})` }} />
         {/* holographic grid */}
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(111,74,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(75,226,255,0.08) 1px, transparent 1px)', backgroundSize: '80px 80px', backgroundPosition: '0 0, 0 0' }} />
         {/* fog */}
@@ -195,7 +198,7 @@ export default function App() {
               {/* chaotic wall */}
               <div className="grid grid-cols-3 gap-3">
                 {Array.from({ length: 9 }).map((_, i) => (
-                  <div key={i} className="h-28 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md rotate-[${(i%3-1)*2}] hover:rotate-0 transition-transform" />
+                  <div key={i} className="h-28 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md hover:rotate-0 transition-transform" />
                 ))}
               </div>
               {/* hologram sweep */}
